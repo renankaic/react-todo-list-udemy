@@ -3,6 +3,7 @@ import { useFormik } from 'formik'
 import TodosContext from '../../../../state/todos/Context'
 import * as todosActions from '../../../../state/todos/actions'
 import * as yup from 'yup'
+import styles from './TodoCreator.module.css'
 
 function TodoCreator() {
 
@@ -17,7 +18,7 @@ function TodoCreator() {
         }),
         onSubmit: (values, formikBag) => {
             dispatchToTodos(todosActions.addTodo(values.title))
-            formikBag.setFieldValue('title', '')
+            formikBag.setFieldValue('title', '', false)
         }
     })
 
@@ -28,21 +29,22 @@ function TodoCreator() {
     }, [inputTitle])
 
     return(
-        <form onSubmit={handleSubmit}>
+        <form className={styles.container} onSubmit={handleSubmit}>
             <input 
+                className={styles.input}
                 type='text' 
                 placeholder='Nova tarefa'
                 {...getFieldProps('title')} 
                 autoComplete='off'
                 ref={inputTitle}
-                disabled={!isValid}
                 />
 
                 {touched.title && errors.title ? (
-                    <small>{errors.title}</small>
+                    <small className={styles.error}>{errors.title}</small>
                 ) : null}
 
-            <button type='submit' >Adicionar Tarefa</button>                
+            <button className={styles.submit}
+                disabled={!isValid} type='submit' >Adicionar Tarefa</button>                
         </form>
     )
 
