@@ -8,11 +8,7 @@ function TodoCreator() {
 
     const { todos, dispatchToTodos } = useContext(TodosContext)
 
-    useEffect(() => {
-        console.log(todos)
-    }, [todos])
-    
-    const formik = useFormik({
+    const { getFieldProps, touched, errors, isValid, handleSubmit } = useFormik({
         initialValues: {
             title: ''
         },
@@ -32,17 +28,18 @@ function TodoCreator() {
     }, [inputTitle])
 
     return(
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <input 
                 type='text' 
                 placeholder='Nova tarefa'
-                {...formik.getFieldProps('title')} 
+                {...getFieldProps('title')} 
                 autoComplete='off'
                 ref={inputTitle}
+                disabled={!isValid}
                 />
 
-                {formik.touched.title && formik.errors.title ? (
-                    <small>{formik.errors.title}</small>
+                {touched.title && errors.title ? (
+                    <small>{errors.title}</small>
                 ) : null}
 
             <button type='submit' >Adicionar Tarefa</button>                
