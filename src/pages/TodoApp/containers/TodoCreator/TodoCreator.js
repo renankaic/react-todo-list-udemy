@@ -7,7 +7,7 @@ import styles from './TodoCreator.module.css'
 
 function TodoCreator() {
 
-    const { todos, dispatchToTodos } = useContext(TodosContext)
+    const { dispatchToTodos } = useContext(TodosContext)
 
     const { getFieldProps, touched, errors, isValid, handleSubmit } = useFormik({
         initialValues: {
