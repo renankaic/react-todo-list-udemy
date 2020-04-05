@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { ReactComponent as UpdateTitleIcon } from '../../../../../../assets/icons/update-title.svg'
-import { ReactComponent as DeleteTodoIcon } from '../../../../../../assets/icons/delete-todo.svg'
+import { ReactComponent as DeleteTodoIcon } from '../../../../../../assets/icons/delete.svg'
 import styles from './TodoItem.module.css'
 
 function TodoItem({ id, title, completed, onDelete, onStatusUpdate, onModalOpen }) {
@@ -16,8 +16,8 @@ function TodoItem({ id, title, completed, onDelete, onStatusUpdate, onModalOpen 
     }, [onDelete, id])
 
     const handleModalOpen = useCallback(() => {
-        onModalOpen(id)
-    }, [onModalOpen,id])
+        onModalOpen(id, title)
+    }, [onModalOpen, id, title])
 
     useEffect(() => {
         onStatusUpdate(id, isChecked)
