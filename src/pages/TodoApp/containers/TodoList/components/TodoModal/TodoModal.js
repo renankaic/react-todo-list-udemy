@@ -1,6 +1,7 @@
 import React from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
+import styles from './TodoModal.module.css'
 
 function TodoModal({ todoId, onModalClose, onTitleUpdate }) {
 
@@ -22,7 +23,7 @@ function TodoModal({ todoId, onModalClose, onTitleUpdate }) {
             <form onSubmit={handleSubmit}>
                 <input
                     type='text'
-                    placeholder='Novo nome'
+                    placeholder='Novo titulo'
                     {...getFieldProps('title')}
                     autoComplete='off'
                 />

@@ -9,17 +9,14 @@ function TodoList() {
 
     const { todos, dispatchToTodos } = useContext(TodosContext)
 
-    const [showModal, setShowModal] = useState(false)
-
     const [currentId, setCurrentId] = useState(null)
 
     const handleModalOpen = useCallback((id) => {
         setCurrentId(id)
-        setShowModal(true)
     }, [])
 
     const handleModalClose = useCallback(() => {
-        setShowModal(false)
+        setCurrentId(null)
     }, [])
 
     const handleTitleUpdate = useCallback((id, title) => {
@@ -51,7 +48,7 @@ function TodoList() {
                     )
                 })}
             </ul>
-            {showModal && (
+            {currentId && (
                 <TodoModal 
                     todoId={currentId}
                     onModalClose={handleModalClose} 
