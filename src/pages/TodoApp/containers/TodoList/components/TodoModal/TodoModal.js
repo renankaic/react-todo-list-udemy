@@ -4,11 +4,11 @@ import { ReactComponent as CloseIcon } from '../../../../../../assets/icons/dele
 import * as yup from 'yup'
 import styles from './TodoModal.module.css'
 
-function TodoModal({ todoId, title, onModalClose, onTitleUpdate }) {
+function TodoModal({ todoId, onModalClose, onTitleUpdate, findTitle }) {
 
     const { getFieldProps, touched, errors, isValid, handleSubmit } = useFormik({
         initialValues: {
-            title: title
+            title: findTitle(todoId)
         },
         validationSchema: yup.object({
             title: yup.string().required('O nome da tarefa é obrigatório!')
