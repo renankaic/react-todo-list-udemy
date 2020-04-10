@@ -1,7 +1,7 @@
 import React, { useContext, useCallback, useState, useEffect } from 'react'
 import FilterContext from '../../../../state/filter/Context'
 import * as filterActions from '../../../../state/filter/actions'
-import TodoSelect from './TodoSelect/TodoSelect'
+import TodoSelect from './components/TodoSelect/TodoSelect'
 import styles from './TodoFilter.module.css'
 
 function TodoFilter() {
@@ -25,7 +25,6 @@ function TodoFilter() {
     return(
         <footer>
             <div className={styles.container}>
-                <h1>{filter}</h1>
                 <TodoSelect 
                     value={selectValue} 
                     onOptionChange={handleOptionChange} 
