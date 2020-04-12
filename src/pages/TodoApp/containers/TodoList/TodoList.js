@@ -22,17 +22,10 @@ function TodoList() {
     }, [])
 
     const getTile = useCallback((id) => {
-        let currentTitle = ''
-
-        todos.some(todo => {
-            if (todo.id === id){
-                currentTitle = todo.title
-                return true                
-            }
-            return false
+        let currentTodo = todos.find(todo => {
+            return todo.id === id
         })
-
-        return currentTitle
+        return currentTodo.title
     }, [todos])
 
     const handleTitleUpdate = useCallback((id, title) => {
