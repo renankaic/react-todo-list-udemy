@@ -6,13 +6,15 @@ import styles from './TodoModal.module.css'
 
 function TodoModal({ todoId, onModalClose, onTitleUpdate, findTitle }) {
 
-    const { getFieldProps, touched, errors, isValid, handleSubmit } = useFormik({
+    const { getFieldProps, errors, handleSubmit } = useFormik({
         initialValues: {
             title: findTitle(todoId)
-        },
+        },        
         validationSchema: yup.object({
             title: yup.string().required('O nome da tarefa é obrigatório!')
         }),
+        validateOnChange: false,
+        validateOnBlur: false,
         onSubmit: (values, formikBag) => {
             onTitleUpdate(todoId, values.title)
             formikBag.setFieldValue('title', '', false)
@@ -34,11 +36,11 @@ function TodoModal({ todoId, onModalClose, onTitleUpdate, findTitle }) {
                     autoComplete='off'
                 />
 
-                {touched.title && errors.title ? (
+                {errors.title ? (
                     <small className={styles.error}>{errors.title}</small>
                 ) : null}
 
-                <button className={styles.submit} disabled={!isValid} type='submit' >Atualizar Tarefa</button>
+                <button className={styles.submit} type='submit' >Atualizar Tarefa</button>
                 <button className={styles.closeButton} onClick={onModalClose}>
                     <CloseIcon />
                 </button>

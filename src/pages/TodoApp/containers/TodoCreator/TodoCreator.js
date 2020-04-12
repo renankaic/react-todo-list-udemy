@@ -9,10 +9,12 @@ function TodoCreator() {
 
     const { dispatchToTodos } = useContext(TodosContext)
 
-    const { getFieldProps, touched, errors, isValid, handleSubmit } = useFormik({
+    const { getFieldProps, errors, handleSubmit } = useFormik({
         initialValues: {
             title: ''
         },
+        validateOnChange: false,
+        validateOnBlur: false,
         validationSchema: yup.object({
             title: yup.string().required('O nome da tarefa é obrigatório!')
         }),
@@ -39,12 +41,16 @@ function TodoCreator() {
                 ref={inputTitle}
                 />
 
-                {touched.title && errors.title ? (
+                {errors.title ? (
                     <small className={styles.error}>{errors.title}</small>
                 ) : null}
 
-            <button className={styles.submit}
-                disabled={!isValid} type='submit' >Adicionar Tarefa</button>                
+            <button 
+                className={styles.submit}
+                type='submit' 
+                >
+                    Adicionar Tarefa
+            </button>                
         </form>
     )
 
