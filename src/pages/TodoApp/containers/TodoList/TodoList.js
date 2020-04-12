@@ -3,7 +3,9 @@ import TodosContext from '../../../../state/todos/Context'
 import TodoItem from './components/TodoItem/TodoItem'
 import TodoModal from './components/TodoModal/TodoModal'
 import * as TodosActions from '../../../../state/todos/actions'
+import FilterContext from '../../../../state/filter/Context'
 import styles from './TodoList.module.css'
+import filteredList from '../../../../utils/functions.js'
 
 function TodoList() {
 
@@ -45,10 +47,12 @@ function TodoList() {
         dispatchToTodos(TodosActions.removeTodo(id))
     }, [dispatchToTodos])
 
+    const { filter } = useContext(FilterContext)    
+
     return(
         <main className={styles.container}>
             <ul>
-                {todos.map(todo => {
+                {filteredList(todos,filter).map(todo => {
                     return (
                         <TodoItem 
                             key={todo.id} 

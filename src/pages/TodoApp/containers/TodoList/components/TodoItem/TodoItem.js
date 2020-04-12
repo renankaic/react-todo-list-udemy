@@ -30,7 +30,7 @@ function TodoItem({ id, title, completed, onDelete, onStatusUpdate, onModalOpen 
                 <button onClick={handleModalOpen}>
                     <UpdateTitleIcon />
                 </button>
-                <input type="checkbox" value={isChecked} onChange={handleCheckChange}/>
+                <input type="checkbox" checked={completed} onChange={handleCheckChange}/>
                 <button onClick={handleDelete}>
                     <DeleteTodoIcon />
                 </button>
