@@ -66,3 +66,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+### Firebase Integration
+
+1 - `yarn build`
+2 - `firebase init` (set folder 'build' instead of 'public' - DO NOT OVERWRITE INDEX.HTML)
+3 - `firebase deploy`
